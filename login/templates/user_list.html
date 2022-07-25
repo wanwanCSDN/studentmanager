@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    <title>用户列表</title>
+{% endblock %}
+
+{% block content %}
+<!--按钮 -->
+<div>
+    <div class="container">
+        <div style="margin-bottom: 10px">
+            <a class="btn btn-info" href="/userinfo/add/" >
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                新增用户
+            </a>
+        </div>
+        <!--面板-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                用户列表</div>
+            <table class="table table-bordered">
+                <thead0>
+                <tr>
+                    <th>序号</th>
+                    <th>用户名</th>
+                    <th>密码</th>
+                    <th>帐号状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead0>
+                <tbody>
+                {% for obj in data_list %}
+                <tr>
+                    <th scope="row">{{ obj.id}}</th>
+                    <td>{{ obj.user_name }}</td>
+                    <td>{{ obj.user_pwd }}</td>
+                    <td>{{ obj.get_user_state_display}}</td>
+                    <td>
+                        <a class="btn btn-primary" value="编辑" href="/userinfo/{{ obj.id }}/edit/">编辑</a>
+                        <a class="btn btn-danger" value="删除" href="/userinfo/delete/?nid={{ obj.id }}">删除</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
